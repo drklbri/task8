@@ -21,7 +21,7 @@ public class Table extends JFrame {
     private JPanel MainPanel;
     private JButton rectangleCheckButton;
     private JTextField rectangleCheckField;
-
+    private int[][] tempArray;
 
     private final JFileChooser fileChooserOpen;
     private final JFileChooser fileChooserSave;
@@ -71,6 +71,7 @@ public class Table extends JFrame {
             try {
                 if (fileChooserOpen.showOpenDialog(MainPanel) == JFileChooser.APPROVE_OPTION) {
                     int[][] matrix = ArrayUtils.readIntArray2FromFile(fileChooserOpen.getSelectedFile().getPath());
+                    tempArray = matrix;
                     JTableUtils.writeArrayToJTable(inTable, matrix);
                 }
             } catch (Exception a) {
@@ -117,10 +118,7 @@ public class Table extends JFrame {
 
         {
             try {
-                if (fileChooserOpen.showOpenDialog(MainPanel) == JFileChooser.APPROVE_OPTION) {
-                    int[][] matrix = ArrayUtils.readIntArray2FromFile(fileChooserOpen.getSelectedFile().getPath());
-                    rectangleCheckField.setText(arrayProcessing.rectangleCheck(matrix));
-                }
+                    rectangleCheckField.setText(arrayProcessing.rectangleCheck(tempArray));
             } catch (Exception a) {
                 SwingUtils.showErrorMessageBox(a);
             }
