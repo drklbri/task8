@@ -73,6 +73,7 @@ public class Table extends JFrame {
                     int[][] matrix = ArrayUtils.readIntArray2FromFile(fileChooserOpen.getSelectedFile().getPath());
                     tempArray = matrix;
                     JTableUtils.writeArrayToJTable(inTable, matrix);
+                    rectangleCheckField.setText("The array was not checked");
                 }
             } catch (Exception a) {
                 SwingUtils.showErrorMessageBox(a);
